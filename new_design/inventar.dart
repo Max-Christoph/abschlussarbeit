@@ -18,6 +18,9 @@ export 'inventar_model.dart';
 class InventarWidget extends StatefulWidget {
   const InventarWidget({super.key});
 
+  static String routeName = 'Inventar';
+  static String routePath = '/inventar';
+
   @override
   State<InventarWidget> createState() => _InventarWidgetState();
 }
@@ -759,7 +762,7 @@ class _InventarWidgetState extends State<InventarWidget> {
                                                         fit: BoxFit.cover,
                                                       ),
                                                       Text(
-                                                        'Vegetables',
+                                                        'TK Beeren',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -778,7 +781,7 @@ class _InventarWidgetState extends State<InventarWidget> {
                                                                 ),
                                                       ),
                                                       Text(
-                                                        'Expires in 90 days',
+                                                        'Läuft ab in 180 Tagen',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -832,7 +835,7 @@ class _InventarWidgetState extends State<InventarWidget> {
                                                         fit: BoxFit.cover,
                                                       ),
                                                       Text(
-                                                        'Meat',
+                                                        'Fleisch',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -851,7 +854,7 @@ class _InventarWidgetState extends State<InventarWidget> {
                                                                 ),
                                                       ),
                                                       Text(
-                                                        'Expires in 60 days',
+                                                        'Läuft ab in 60 Tagen',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -892,7 +895,7 @@ class _InventarWidgetState extends State<InventarWidget> {
               Align(
                 alignment: AlignmentDirectional(0, 1),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 20),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,

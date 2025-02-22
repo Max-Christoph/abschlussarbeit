@@ -1,3 +1,4 @@
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -6,33 +7,35 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'login_model.dart';
-export 'login_model.dart';
+import 'new_product_model.dart';
+export 'new_product_model.dart';
 
-/// I need a loggin Page, where the user can enter the database connection
-/// (because i want that every user can host his own databse for user and
-/// products) and loggin credentials.
+/// Der Nutzer braucht noch eine Seite um ein Produkt manuell anlegen zu
+/// können.
 ///
-/// next page will be a registration so make a button for it
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({super.key});
+/// Also mit Name, sowie hertsteller und beschreibuzng. Dies kann er auch über
+/// ein Tropdown schon aus zuvor angelegten auswählen. Auf der Seite bracuht
+/// man einen zurückbutton und einen. mindesthaltbarkeitsdatum, menge und
+/// preis wir dann auf der anderen Siete der Produktgruppe quasi hinzugefügt
+class NewProductWidget extends StatefulWidget {
+  const NewProductWidget({super.key});
 
-  static String routeName = 'Login';
-  static String routePath = '/login';
+  static String routeName = 'new_product';
+  static String routePath = '/newProduct';
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<NewProductWidget> createState() => _NewProductWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
-  late LoginModel _model;
+class _NewProductWidgetState extends State<NewProductWidget> {
+  late NewProductModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LoginModel());
+    _model = createModel(context, () => NewProductModel());
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
@@ -42,12 +45,6 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
-
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
-
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
   }
 
   @override
@@ -70,8 +67,20 @@ class _LoginWidgetState extends State<LoginWidget> {
         appBar: AppBar(
           backgroundColor: Color(0xFF2797FF),
           automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderRadius: 8,
+            buttonSize: 40,
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 24,
+            ),
+            onPressed: () {
+              print('IconButton pressed ...');
+            },
+          ),
           title: Text(
-            'FoodOrganizer',
+            'Produkt anlegen',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Inter Tight',
                   color: Colors.white,
@@ -111,7 +120,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              'Datenbankverbindung',
+                              'Produktdetails',
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
@@ -143,7 +152,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       autofocus: false,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Datenbank Host',
+                                        labelText: 'Produktname',
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -207,7 +216,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       autofocus: false,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Datenbank Port',
+                                        labelText: 'Hersteller',
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -262,7 +271,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       minLines: 1,
-                                      keyboardType: TextInputType.number,
                                       validator: _model.textController2Validator
                                           .asValidator(context),
                                     ),
@@ -272,7 +280,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       autofocus: false,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Datenbank Name',
+                                        labelText: 'Beschreibung',
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -326,7 +334,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             fontFamily: 'Inter',
                                             letterSpacing: 0.0,
                                           ),
-                                      minLines: 1,
+                                      maxLines: 6,
+                                      minLines: 3,
                                       validator: _model.textController3Validator
                                           .asValidator(context),
                                     ),
@@ -357,7 +366,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              'Anmeldedaten',
+                              'Vorhandene Produkte',
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
@@ -383,149 +392,59 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    TextFormField(
-                                      controller: _model.textController4,
-                                      focusNode: _model.textFieldFocusNode4,
-                                      autofocus: false,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText: 'Benutzername',
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0xFF636F81),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                      ),
+                                    Text(
+                                      'Oder wählen Sie ein bereits vorhandenes Produkt:',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .bodyMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      minLines: 1,
-                                      validator: _model.textController4Validator
-                                          .asValidator(context),
-                                    ),
-                                    TextFormField(
-                                      controller: _model.textController5,
-                                      focusNode: _model.textFieldFocusNode5,
-                                      autofocus: false,
-                                      obscureText: !_model.passwordVisibility,
-                                      decoration: InputDecoration(
-                                        labelText: 'Passwort',
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0xFF636F81),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        suffixIcon: InkWell(
-                                          onTap: () => safeSetState(
-                                            () => _model.passwordVisibility =
-                                                !_model.passwordVisibility,
-                                          ),
-                                          focusNode:
-                                              FocusNode(skipTraversal: true),
-                                          child: Icon(
-                                            _model.passwordVisibility
-                                                ? Icons.visibility_outlined
-                                                : Icons.visibility_off_outlined,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            size: 22,
-                                          ),
-                                        ),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily: 'Inter',
                                             letterSpacing: 0.0,
                                           ),
-                                      minLines: 1,
-                                      validator: _model.textController5Validator
-                                          .asValidator(context),
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                          color: Color(0xFF636F81),
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            12, 16, 12, 16),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Produkt auswählen',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                            Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 24,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ].divide(SizedBox(height: 16)),
                                 ),
@@ -536,58 +455,26 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ),
                     ),
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
-                        },
-                        text: 'Anmelden',
-                        options: FFButtonOptions(
-                          width: MediaQuery.sizeOf(context).width,
-                          height: 50,
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          color: Color(0xFF2797FF),
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleMedium.override(
-                                    fontFamily: 'Inter Tight',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 0,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
-                        },
-                        text: 'Account erstellen',
-                        options: FFButtonOptions(
-                          width: MediaQuery.sizeOf(context).width,
-                          height: 50,
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          color: Color(0x00FFFFFF),
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleMedium.override(
-                                    fontFamily: 'Inter Tight',
-                                    color: Color(0xFF2797FF),
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 0,
-                          borderSide: BorderSide(
-                            color: Color(0xFF2797FF),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ].divide(SizedBox(height: 16)),
+                  FFButtonWidget(
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    text: 'Weiter',
+                    options: FFButtonOptions(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: 50,
+                      padding: EdgeInsets.all(8),
+                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      color: Color(0xFF2797FF),
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleMedium.override(
+                                fontFamily: 'Inter Tight',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
+                      elevation: 0,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                 ].divide(SizedBox(height: 24)),
               ),

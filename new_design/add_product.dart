@@ -20,6 +20,9 @@ export 'scanned_product_model.dart';
 class ScannedProductWidget extends StatefulWidget {
   const ScannedProductWidget({super.key});
 
+  static String routeName = 'ScannedProduct';
+  static String routePath = '/scannedProduct';
+
   @override
   State<ScannedProductWidget> createState() => _ScannedProductWidgetState();
 }

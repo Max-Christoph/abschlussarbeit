@@ -17,6 +17,9 @@ export 'home_page_model.dart';
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
 
+  static String routeName = 'HomePage';
+  static String routePath = '/homePage';
+
   @override
   State<HomePageWidget> createState() => _HomePageWidgetState();
 }
@@ -419,7 +422,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               Align(
                 alignment: AlignmentDirectional(0, 1),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 20),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -15,6 +15,9 @@ export 'registrierung_model.dart';
 class RegistrierungWidget extends StatefulWidget {
   const RegistrierungWidget({super.key});
 
+  static String routeName = 'Registrierung';
+  static String routePath = '/registrierung';
+
   @override
   State<RegistrierungWidget> createState() => _RegistrierungWidgetState();
 }
